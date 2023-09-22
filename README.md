@@ -42,13 +42,16 @@ pub struct User {
     name: String,
 }
 
+// The new function is automatically created for us by the blanket implementation from the NewId trait
+let typesafe_custom_id = UserId::new("fa77edc3-56ed-4208-9e0b-c0b1c32e2d34")?,
+
 let user_to_be_created = User {
-    id: UserId::new("fa77edc3-56ed-4208-9e0b-c0b1c32e2d34").unwrap(),
+    id: typesafe_custom_id,
     name: "John Doe".to_string(),
 };
 
-let db = Surreal::new::<Mem>(()).await.unwrap();
-db.use_ns("test").use_db("test").await.unwrap();
+let db = Surreal::new::<Mem>(()).await?;
+db.use_ns("test").use_db("test").await?;
 
 let create_result = db.create(USERS_TABLE).content(&user_to_be_created).await;
 let retrieved_user: User = create_result.unwrap().remove(0);
