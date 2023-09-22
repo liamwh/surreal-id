@@ -5,11 +5,11 @@
 
 ## surreal-id
 
-The `surreal-id` crate offers a standardized way to create and validate IDs in your application for usage with SurrealDB. By defining the `NewId` trait, the crate streamlines the ID creation process, handling errors like malformed or empty IDs, and ensures consistency with associated table names. This also enables developers to serialize and deserialize custom ID types from SurrealDB whilst still retrieving the ID field for usage in your application, making it using custom ID types and logic with SurrealDB seamless.
+The `surreal-id` crate offers a standardized way to create and validate IDs in your application for usage with SurrealDB. Using the `NewId` trait, the crate streamlines the ID type defining process with a blanket implementation of `new` that handles errors like malformed or empty IDs, and ensures consistency with associated table names and functionality with SurrealDB. This also enables developers to create custom IDs in their application layer and serialize and deserialize those types safely from SurrealDB, ensuring type safety and consistency throughout the app.
 
 ## Example
 
-```rs
+```rust
 use serde::{Deserialize, Serialize};
 use surreal_id::NewId;
 use surrealdb::{opt::RecordId, sql::Id};
@@ -31,11 +31,11 @@ impl NewId for UserId {
 }
 ```
 
-> NOTE: For most use cases, most of the above code is boilerplate that could be eliminated with a procerdural macro, where the only thing specified is the table name.
+> NOTE: For most use cases, most of the above code is boilerplate that could be eliminated with a procerdural macro, where the only thing specified is the table name. PRs welcome!
 
 Now you can instantiate the `UserId` type using `new`, and use it in your struct with SurrealDB like so:
 
-```rs
+```rust
 #[derive(Serialize, Deserialize)]
 pub struct User {
     id: UserId,
