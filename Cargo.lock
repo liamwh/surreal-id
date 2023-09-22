@@ -2875,6 +2875,7 @@ version = "0.1.0"
 dependencies = [
  "pretty_assertions",
  "proptest",
+ "rand",
  "serde",
  "surrealdb",
  "thiserror",

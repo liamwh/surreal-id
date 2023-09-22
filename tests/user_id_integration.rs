@@ -55,7 +55,7 @@ mod tests {
     fn invalid_table_name_returns_invalid_table_error() {
         let fx_table_name = "invalid_table";
         let id = format!("{}:⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩", fx_table_name);
-        let result = UserId::new(&id);
+        let result = UserId::new(id);
         assert_eq!(
             result,
             Err(IdError::InvalidTable(
@@ -72,6 +72,7 @@ mod tests {
             "users:⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34", // Missing closing bracket
             "users:fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩", // Missing opening bracket
             "users:⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩ ", // Trailing space
+            "users:⟨fa77edc3⟩56ed⟩",                      // Multiple ⟩
         ];
 
         for id in invalid_ids {
@@ -97,6 +98,13 @@ mod tests {
         let id = "";
         let result = UserId::new(id);
         assert_eq!(result, Err(IdError::IdCannotBeEmpty));
+    }
+
+    #[test]
+    fn valid_table_but_empty_id_part_returns_id_cannot_be_empty_error() {
+        let full_id = format!("{}:⟨{}⟩", USERS_TABLE, "");
+        let result = UserId::new(full_id);
+        assert!(matches!(result, Err(IdError::IdCannotBeEmpty)));
     }
 
     #[tokio::test]
