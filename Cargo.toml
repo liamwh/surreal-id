@@ -1,0 +1,25 @@
+[package]
+name = "surreal-id"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "A package for easily creating ID types for usage with surrealdb"
+repository = "https://github.com/liamwh/surreal-id.git"
+authors = ["Liam Woodleigh-Hardinge", "liam.woodleigh@gmail.com"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+surrealdb = "~1.0"
+thiserror = "~1.0"
+tonic = { version = "~0.10", optional = true }
+
+[features]
+tonic = ["dep:tonic"]
+
+[dev-dependencies]
+pretty_assertions = "1.4.0"
+serde = "1.0.188"
+tokio = "1.32.0"
+surrealdb = { features = ["kv-mem"], version = "~1.0" }
+proptest = "1.2.0"
