@@ -7,6 +7,7 @@ on:
   schedule:
     - cron: "7 7 * * *"
 name: Rolling
+
 jobs:
   nightly:
     runs-on: ubuntu-latest
@@ -22,6 +23,7 @@ jobs:
         run: cargo generate-lockfile
       - name: cargo test --locked
         run: cargo test --locked --all-features --all-targets
+
   update:
     runs-on: ubuntu-latest
     name: ubuntu / beta / updated

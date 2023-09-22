@@ -41,6 +41,7 @@ jobs:
             target
             /home/runner/.cargo
           key: ${{ steps.target-cache-restore.outputs.cache-primary-key }}
+
   proptest:
     runs-on: ubuntu-latest
     name: ubuntu / stable
@@ -60,6 +61,7 @@ jobs:
           key: stable-target
       - name: cargo test --test proptest --locked -- --ignored
         run: cargo test --locked --test proptest -- --ignored
+
   # minimal:
   #   runs-on: ubuntu-latest
   #   name: ubuntu / stable / minimal-versions
@@ -77,6 +79,7 @@ jobs:
   #       run: cargo +nightly update -Zminimal-versions
   #     - name: cargo test
   #       run: cargo test --locked --all-features --all-targets
+  #
   os-check:
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.os }} / stable
@@ -99,6 +102,7 @@ jobs:
         run: cargo generate-lockfile
       - name: cargo test
         run: cargo test --locked --all-features --all-targets
+
   coverage:
     runs-on: ubuntu-latest
     name: ubuntu / stable / coverage
