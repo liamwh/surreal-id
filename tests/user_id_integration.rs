@@ -16,6 +16,10 @@ impl NewId for UserId {
             id: inner_id.into(),
         })
     }
+
+    fn get_inner_string(&self) -> String {
+        self.0.id.to_string()
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
@@ -32,6 +36,34 @@ mod tests {
 
     use super::*;
     use pretty_assertions::assert_eq;
+
+    #[test]
+    fn id_with_brackets() {
+        let id = "users:⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩";
+        let user_id = UserId::new(id);
+        assert_eq!(
+            user_id.unwrap().id_with_brackets(),
+            "⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩",
+        );
+    }
+
+    #[test]
+    fn id_without_brackets() {
+        let id = "users:⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩";
+        let user_id = UserId::new(id);
+        assert_eq!(
+            user_id.unwrap().id_without_brackets(),
+            "fa77edc3-56ed-4208-9e0b-c0b1c32e2d34",
+        );
+    }
+
+    #[test]
+    fn table_part_returns_correct_table() {
+        let id = "users:⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩";
+        let user_id = UserId::new(id);
+        assert!(user_id.is_ok());
+        assert_eq!(user_id.unwrap().table(), USERS_TABLE);
+    }
 
     #[test]
     fn valid_id_and_table_creates_user_id_successfully() {
