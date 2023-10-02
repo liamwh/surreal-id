@@ -58,4 +58,29 @@ pub trait NewId: Sized {
     ///
     /// The inner ID is expected to implement the conversion into `surrealdb::sql::Id`.
     fn from_inner_id<T: Into<Id>>(inner_id: T) -> Self;
+
+    /// Returns the table name associated with this ID type.
+    fn table(&self) -> &'static str {
+        Self::TABLE
+    }
+
+    /// Returns the inner ID as a string without the table name or colon, but including the brackets.
+    fn id_with_brackets(&self) -> String {
+        format!("⟨{}⟩", &self.id_without_brackets())
+    }
+
+    /// Returns the inner ID as a string without the table name, colon and brackets.
+    fn id_without_brackets(&self) -> String {
+        let original_id = self.get_inner_string();
+        original_id
+            .split(':')
+            .next()
+            .unwrap_or(&original_id)
+            .chars()
+            .filter(|&c| c != '⟨' && c != '⟩')
+            .collect()
+    }
+
+    /// Provided by the implementer, returns the inner ID as a string.
+    fn get_inner_string(&self) -> String;
 }
