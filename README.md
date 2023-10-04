@@ -28,10 +28,12 @@ impl NewId for UserId {
             id: inner_id.into(),
         })
     }
+
+    fn get_inner_string(&self) -> String {
+        self.0.id.to_string()
+    }
 }
 ```
-
-> NOTE: For most use cases, most of the above code is boilerplate that could be eliminated with a procerdural macro, where the only thing specified is the table name. PRs welcome!
 
 Now you can instantiate the `UserId` type using `new`, and use it in your struct with SurrealDB like so:
 
@@ -58,6 +60,14 @@ let create_result = db.create(USERS_TABLE).content(&user_to_be_created).await;
 let retrieved_user: User = create_result.unwrap().remove(0);
 
 assert_eq!(user_to_be_created, retrieved_user)
+```
+
+You also get the following methods on your custom ID type for free:
+
+```rust
+typesafe_custom_id.table() // returns "users"
+typesafe_custom_id.id_with_brackets() // returns "⟨fa77edc3-56ed-4208-9e0b-c0b1c32e2d34⟩"
+typesafe_custom_id.id_without_brackets() // returns "fa77edc3-56ed-4208-9e0b-c0b1c32e2d34"
 ```
 
 ## License
