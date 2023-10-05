@@ -10,9 +10,9 @@ authors = ["Liam Woodleigh-Hardinge", "liam.woodleigh@gmail.com"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-surrealdb = "~1.0"
-thiserror = "~1.0"
-tonic = { version = "~0.10", optional = true }
+surrealdb = "^1.0"
+thiserror = "^1.0"
+tonic = { version = "^0.1", optional = true }
 
 [features]
 tonic = ["dep:tonic"]
