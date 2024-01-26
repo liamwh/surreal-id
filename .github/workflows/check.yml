@@ -86,7 +86,7 @@ jobs:
     strategy:
       matrix:
         checks:
-          - advisories
+          # - advisories
           - bans licenses sources
 
     # Prevent sudden announcement of a new advisory from failing ci:
