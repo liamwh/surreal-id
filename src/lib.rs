@@ -1,5 +1,6 @@
 #![forbid(unsafe_code)]
-#![warn(clippy::all)]
+#![doc = include_str!("../README.md")]
+#![deny(clippy::all)]
 #![cfg_attr(coverage_nightly, feature(no_coverage))]
 
 mod errors;

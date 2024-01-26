@@ -5,7 +5,7 @@
 
 ## surreal-id
 
-The `surreal-id` crate offers a standardized way to create and validate IDs in your application for usage with SurrealDB. Using the `NewId` trait, the crate streamlines the ID type defining process with a blanket implementation of `new` that handles errors like malformed or empty IDs, and ensures consistency with associated table names and functionality with SurrealDB. This also enables developers to create custom IDs in their application layer and serialize and deserialize those types safely from SurrealDB, ensuring type safety and consistency throughout the app.
+The `surreal-id` crate offers a standardized way to create and validate IDs in your application for usage with SurrealDB. Using the [`NewId`] trait, the crate streamlines the ID type defining process with a blanket implementation of `new` that handles errors like malformed or empty IDs, and ensures consistency with associated table names and functionality with SurrealDB. This also enables developers to create custom IDs in their application layer and serialize and deserialize those types safely from SurrealDB, ensuring type safety and consistency throughout the app.
 
 ## Example
 
