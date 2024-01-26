@@ -23,16 +23,6 @@ rand = "0.8.5"
 
 [workspace.lints.rust]
 unsafe_code = "forbid"
-missing_docs = "warn"
 
 [workspace.lints.clippy]
-wildcard_imports = "allow"
-must_use_candidate = "allow"
-module_name_repetitions = "allow"
-future_not_send = "allow"
-similar_names = "allow"
-all = "warn"
-enum_glob_use = "deny"
-pedantic = "deny"
-nursery = "deny"
-unwrap_used = "deny"
+all = "deny"
