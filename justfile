@@ -23,3 +23,7 @@ doc-open $RUSTDOCFLAGS="-A missing_docs":
 # Run cargo clippy on all crates
 clippy *clippy-args:
     cargo clippy --all --tests --examples --benches -- {{ clippy-args }}
+
+# Run rust tests with `cargo nextest`
+nextest *FLAGS="--all":
+    cargo nextest run {{ FLAGS }}
