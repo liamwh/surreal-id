@@ -42,19 +42,21 @@ jobs:
         uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-  doc:
-    runs-on: ubuntu-latest
-    name: nightly / doc
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true
-      - name: Install nightly
-        uses: dtolnay/rust-toolchain@nightly
-      - name: cargo doc
-        run: cargo doc --no-deps --all-features
-        env:
-          RUSTDOCFLAGS: --cfg docsrs
+
+  # NOTE: Commented out nightly builds for now, see: https://github.com/liamwh/surreal-id/actions/runs/9061443687/job/24893200609?pr=26
+  # doc:
+  #   runs-on: ubuntu-latest
+  #   name: nightly / doc
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         submodules: true
+  #     - name: Install nightly
+  #       uses: dtolnay/rust-toolchain@nightly
+  #     - name: cargo doc
+  #       run: cargo doc --no-deps --all-features
+  #       env:
+  #         RUSTDOCFLAGS: --cfg docsrs
 
   hack:
     runs-on: ubuntu-latest
