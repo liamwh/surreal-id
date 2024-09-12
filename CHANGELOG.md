@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1](https://github.com/liamwh/surreal-id/compare/v1.0.0...v1.0.1) - 2024-09-12
+
+### Other
+
+- *(deps)* bump surrealdb from 1.0.0 to 1.0.2
+- Bump thiserror from 1.0.49 to 1.0.53
+- Bump serde from 1.0.188 to 1.0.193
+
 ## [0.2.2](https://github.com/liamwh/surreal-id/compare/v0.2.1...v0.2.2) - 2024-01-26
 
 ### Other
