@@ -10,4 +10,7 @@ updates:
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
-
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
