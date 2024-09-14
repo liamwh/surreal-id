@@ -2779,7 +2779,7 @@ checksum = "81cdd64d312baedb58e21336b31bc043b77e01cc99033ce76ef539f78e965ebc"
 
 [[package]]
 name = "surreal-id"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "pretty_assertions",
  "proptest",
