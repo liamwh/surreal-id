@@ -14,7 +14,7 @@ surrealdb = "^1.0"
 thiserror = "^1.0"
 
 [dev-dependencies]
-pretty_assertions = "1.4.0"
+pretty_assertions = "1.4.1"
 serde = "1.0.193"
 tokio = "1.33.0"
 surrealdb = { features = ["kv-mem"], version = "^1.0" }
